@@ -7,6 +7,7 @@ public class Vehicle : MonoBehaviour {
     private enum Direction { left, right, up, down };
     private float speed = 5.0f;
     private Vector3 curPos;
+    public bool isPlayerOne;
 
     // Use this for initialization
     void Start() {
@@ -19,16 +20,28 @@ public class Vehicle : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            if (dir != Direction.left) dir = Direction.right;
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            if (dir != Direction.right) dir = Direction.left;
-        } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            if (dir != Direction.down) dir = Direction.up;
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-            if (dir != Direction.up) dir = Direction.down;
+        if (isPlayerOne) {
+            if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                if (dir != Direction.left) dir = Direction.right;
+            } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                if (dir != Direction.right) dir = Direction.left;
+            } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                if (dir != Direction.down) dir = Direction.up;
+            } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                if (dir != Direction.up) dir = Direction.down;
+            }
+        } else {
+            if (Input.GetKeyDown(KeyCode.D)) {
+                if (dir != Direction.left) dir = Direction.right;
+            } else if (Input.GetKeyDown(KeyCode.A)) {
+                if (dir != Direction.right) dir = Direction.left;
+            } else if (Input.GetKeyDown(KeyCode.W)) {
+                if (dir != Direction.down) dir = Direction.up;
+            } else if (Input.GetKeyDown(KeyCode.S)) {
+                if (dir != Direction.up) dir = Direction.down;
+            }
         }
+
 
         switch (dir) {
             case Direction.left:
